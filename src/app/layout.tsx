@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Arga Pradipta - Creative Developer & UI/UX Designer",
+  title: "Tegar Aldiansyah - Creative Developer",
   description:
     "Personal portfolio of Arga Pradipta — a creative developer and UI/UX designer from Jakarta, Indonesia. Crafting digital experiences that inspire.",
   keywords: [
@@ -28,7 +28,6 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Arga Pradipta" }],
   icons: {
-    icon: "https://z-cdn.chatglm.cn/z-ai/static/logo.svg",
   },
 };
 

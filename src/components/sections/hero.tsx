@@ -14,7 +14,7 @@ export function Hero() {
   }
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section id="beranda" className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image
@@ -44,8 +44,8 @@ export function Hero() {
             <div className="absolute -inset-2 bg-gradient-to-r from-emerald-400 to-amber-400 rounded-full blur-lg opacity-40" />
             <div className="relative size-32 md:size-40 rounded-full overflow-hidden border-4 border-emerald-500/30 shadow-2xl">
               <Image
-                src="/images/avatar.png"
-                alt="Arga Pradipta"
+                src="/images/tegar.jpeg"
+                alt="Tegar Aldiansyah"
                 fill
                 className="object-cover"
                 priority
@@ -61,9 +61,9 @@ export function Hero() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-foreground"
         >
-          Arga{" "}
+          Tegar{" "}
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-500 to-emerald-700 dark:from-emerald-400 dark:to-emerald-600">
-            Pradipta
+            Aldiansyah
           </span>
         </motion.h1>
 
@@ -74,7 +74,7 @@ export function Hero() {
           transition={{ duration: 0.6, delay: 0.3 }}
           className="mt-4 text-lg md:text-xl text-emerald-600 dark:text-emerald-400 font-medium"
         >
-          Creative Developer & UI/UX Designer
+          SISWA SMKN 7 SEMARANG
         </motion.p>
 
         {/* Tagline */}
@@ -84,52 +84,8 @@ export function Hero() {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="mt-3 text-base md:text-lg text-muted-foreground max-w-xl mx-auto"
         >
-          Crafting Digital Experiences That Inspire
+          Ngatur Jaringan, Bukan Perasaan | Network
         </motion.p>
-
-        {/* CTA Buttons */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.5 }}
-          className="mt-8 flex flex-col sm:flex-row gap-4 justify-center"
-        >
-          <Button
-            size="lg"
-            className="bg-emerald-600 hover:bg-emerald-700 text-white gap-2 min-h-[44px]"
-            onClick={() => handleScroll("#portfolio")}
-          >
-            <FileText className="size-4" />
-            View My Work
-          </Button>
-          <Button
-            variant="outline"
-            size="lg"
-            className="gap-2 min-h-[44px]"
-            onClick={() => handleScroll("#contact")}
-          >
-            <Mail className="size-4" />
-            Get In Touch
-          </Button>
-        </motion.div>
-
-        {/* Scroll Indicator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 1 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2"
-        >
-          <motion.button
-            animate={{ y: [0, 8, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-            onClick={() => handleScroll("#about")}
-            className="text-muted-foreground hover:text-foreground transition-colors"
-            aria-label="Scroll down"
-          >
-            <ArrowDown className="size-5" />
-          </motion.button>
-        </motion.div>
       </div>
     </section>
   )

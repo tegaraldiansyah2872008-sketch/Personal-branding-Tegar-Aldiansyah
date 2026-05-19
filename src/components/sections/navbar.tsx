@@ -5,12 +5,16 @@ import { motion, AnimatePresence } from "framer-motion"
 import { Menu, X, Sun, Moon } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useTheme } from "next-themes"
+import Link from "next/link"
+import { usePathname } from "next/navigation"
 
 const navLinks = [
-  { href: "#about", label: "About" },
-  { href: "#skills", label: "Skills" },
-  { href: "#portfolio", label: "Portfolio" },
-  { href: "#contact", label: "Contact" },
+  { href: "/", label: "Beranda" },
+  { href: "/about", label: "About" },
+  { href: "/skills", label: "Skills" },
+  { href: "/portfolio", label: "Portfolio" },
+  { href: "/cv", label: "CV" },
+  { href: "/contact", label: "Contact" },
 ]
 
 export function Navbar() {
@@ -18,6 +22,7 @@ export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false)
   const { theme, setTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
+  const pathname = usePathname()
 
   useEffect(() => {
     setMounted(true)
@@ -31,12 +36,8 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
-  const handleNavClick = (href: string) => {
+  const handleNavClick = () => {
     setMobileOpen(false)
-    const el = document.querySelector(href)
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth" })
-    }
   }
 
   return (
@@ -49,28 +50,28 @@ export function Navbar() {
     >
       <nav className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
         {/* Logo */}
-        <a
-          href="#"
-          onClick={(e) => {
-            e.preventDefault()
-            window.scrollTo({ top: 0, behavior: "smooth" })
-          }}
+        <Link
+          href="/"
           className="text-xl font-bold tracking-tight"
         >
-          <span className="text-emerald-600 dark:text-emerald-400">A</span>
-          <span className="text-foreground">P</span>
-        </a>
+          <span className="text-emerald-600 dark:text-emerald-400">Tegar</span>
+          <span className="text-foreground">_Aldi</span>
+        </Link>
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center gap-1">
           {navLinks.map((link) => (
-            <button
+            <Link
               key={link.href}
-              onClick={() => handleNavClick(link.href)}
-              className="px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors rounded-md hover:bg-accent"
+              href={link.href}
+              className={`px-4 py-2 text-sm font-medium transition-colors rounded-md hover:bg-accent ${
+                pathname === link.href
+                  ? "text-emerald-600 dark:text-emerald-400 bg-accent"
+                  : "text-muted-foreground hover:text-foreground"
+              }`}
             >
               {link.label}
-            </button>
+            </Link>
           ))}
           {mounted && (
             <Button
@@ -120,13 +121,18 @@ export function Navbar() {
           >
             <div className="px-4 py-4 flex flex-col gap-1">
               {navLinks.map((link) => (
-                <button
+                <Link
                   key={link.href}
-                  onClick={() => handleNavClick(link.href)}
-                  className="px-4 py-3 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors rounded-md hover:bg-accent text-left"
+                  href={link.href}
+                  onClick={handleNavClick}
+                  className={`px-4 py-3 text-sm font-medium transition-colors rounded-md hover:bg-accent text-left ${
+                    pathname === link.href
+                      ? "text-emerald-600 dark:text-emerald-400 bg-accent"
+                      : "text-muted-foreground hover:text-foreground"
+                  }`}
                 >
                   {link.label}
-                </button>
+                </Link>
               ))}
             </div>
           </motion.div>

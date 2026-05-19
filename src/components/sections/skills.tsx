@@ -15,14 +15,14 @@ import {
 } from "lucide-react"
 
 const skills = [
-  { name: "UI/UX Design", percentage: 95, icon: Palette },
-  { name: "React / Next.js", percentage: 90, icon: Code2 },
-  { name: "TypeScript", percentage: 88, icon: FileType },
-  { name: "Tailwind CSS", percentage: 92, icon: Wind },
-  { name: "Node.js", percentage: 82, icon: Server },
-  { name: "Figma", percentage: 90, icon: Figma },
-  { name: "Motion Design", percentage: 78, icon: Sparkles },
-  { name: "Brand Strategy", percentage: 85, icon: Target },
+  { name: "UI/UX Design", percentage: 75, icon: Palette },
+  { name: "HTML", percentage: 70, icon: Code2 },
+  { name: "Editting Canva", percentage: 88, icon: FileType },
+  { name: "Cisco Packet Tracer", percentage: 90, icon: Wind },
+  { name: "Cyber Security", percentage: 60, icon: Server },
+  { name: "Gold Lane", percentage: 98, icon: Figma },
+  { name: "Badminton", percentage: 95, icon: Sparkles },
+  { name: "Jungle", percentage: 80, icon: Target },
 ]
 
 function SkillCard({ skill, index }: { skill: (typeof skills)[0]; index: number }) {
@@ -69,8 +69,8 @@ export function Skills() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
           label="My Skills"
-          title="What I Do Best"
-          description="A combination of technical expertise and creative vision"
+          title="Yang Saya Kuasai"
+          description="Selalu Berkomitmen Untuk Terus Belajar dan Mengambangkan Kemampuan"
         />
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">

@@ -1,16 +1,10 @@
 "use client"
 
-import { motion, useInView } from "framer-motion"
+import { motion, useInView, AnimatePresence } from "framer-motion"
 import { useRef, useEffect, useState } from "react"
 import { SectionHeading } from "@/components/section-heading"
 import Image from "next/image"
-
-const stats = [
-  { value: 5, suffix: "+", label: "Years Experience" },
-  { value: 50, suffix: "+", label: "Projects Completed" },
-  { value: 30, suffix: "+", label: "Happy Clients" },
-  { value: 10, suffix: "+", label: "Awards" },
-]
+import { ChevronLeft, ChevronRight } from "lucide-react"
 
 function AnimatedCounter({ value, suffix, inView }: { value: number; suffix: string; inView: boolean }) {
   const [count, setCount] = useState(0)
@@ -40,17 +34,49 @@ function AnimatedCounter({ value, suffix, inView }: { value: number; suffix: str
   )
 }
 
+const slides = [
+  {
+    title: "👋 Perkenalan",
+    content: "Hi! Saya Tegar Aldiansyah, Saya berasal dari keluarga sederhana yang selalu mendukung pendidikan dan perkembangan saya. Orang tua saya mengajarkan pentingnya tanggung jawab, Disiplin Dan kerja keras sejak dini. Saya Merupakan siswa di SMKN 7 SEMARANG, Jurusan Sistem Informasi Jaringan dan Aplikasi (SIJA). Selama bersekolah, Saya aktif dalam kegiatan pembelajaran praktik terutama di bidang jaringan komputer",
+    color: "from-emerald-500/10 to-teal-500/10"
+  },
+  {
+    title: "💡 Hobi & Minat",
+    content: "Saya memiliki Hobi bermain bulu tangkis dan bermain game. Dari hobi tersebut, saya belajar tentang sportifitas, strategi, Serta kerja sama tim. Saya memiliki minat yang besar di bidang programming dan jaringan komputer. Terutama dalam memahami cara kerja sistem, membuat solusi berbasis teknologi serta mengelola jaringan",
+    color: "from-blue-500/10 to-cyan-500/10"
+  },
+  {
+    title: "🎯 Cita-cita",
+    content: "Saya bercita-cita menjadi seorang pengusaha dibidang peternakan modern yang memanfaatkan teknologi untuk meningkatkan efisiensi dan produktifitas. Selain itu, saya juga ingin mengembangkan kemampuan di bidang IT sebagai pendukung dalam menjalankan usaha di masa depan",
+    color: "from-purple-500/10 to-pink-500/10"
+  },
+  {
+    title: "🚀 Skills",
+    content: "Saya memiliki soft skill berupa disiplin, tanggung jawab, mampu bekerja sama dengan tim, serta memiliki kemauan belajar yang tinggi sehingga dapat beradaptasi dengan cepat di lingkungan baru. Selain itu, saya juga memiliki hard skill di bidang dasar pemrograman dan konfigurasi jaringan, termasuk pengalaman dalam melakukan IP routing sederhana serta penggunaan tools jaringan seperti Winbox pada Mikrotik.",
+    color: "from-amber-500/10 to-orange-500/10"
+  }
+]
+
 export function About() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
+  const [currentSlide, setCurrentSlide] = useState(0)
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % slides.length)
+  }
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length)
+  }
 
   return (
     <section id="about" className="py-20 md:py-28">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
           label="About Me"
-          title="Get To Know Me"
-          description="A passionate creative developer from Jakarta, Indonesia"
+          title="Tentang saya"
+          description="Saya pengembang kreatif dari Semarang yang suka eksplor teknologi"
         />
 
         <div className="grid md:grid-cols-2 gap-12 items-center">
@@ -65,51 +91,86 @@ export function About() {
             <div className="absolute -inset-4 bg-gradient-to-r from-emerald-200 to-amber-200 dark:from-emerald-900/30 dark:to-amber-900/30 rounded-2xl blur-2xl opacity-30" />
             <div className="relative aspect-[4/5] rounded-2xl overflow-hidden shadow-xl">
               <Image
-                src="/images/avatar.png"
-                alt="Arga Pradipta portrait"
+                src="/images/tegar.jpeg"
+                alt="Tegar Aldiansyah portrait"
                 fill
                 className="object-cover"
               />
             </div>
           </motion.div>
 
-          {/* Text Content */}
+          {/* Slider Content */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6 }}
+            className="relative"
           >
-            <p className="text-muted-foreground text-base md:text-lg leading-relaxed mb-6">
-              Hi! I&apos;m <strong className="text-foreground">Arga Pradipta</strong>, a passionate creative
-              developer based in Jakarta, Indonesia with 5+ years of experience in building beautiful,
-              functional digital products.
-            </p>
-            <p className="text-muted-foreground text-base md:text-lg leading-relaxed mb-8">
-              I combine technical expertise with design thinking to create experiences that users love.
-              My approach blends clean code with intuitive design, resulting in digital products that
-              not only look great but also perform exceptionally well.
-            </p>
-            <p className="text-muted-foreground text-base md:text-lg leading-relaxed mb-10">
-              When I&apos;m not coding or designing, you&apos;ll find me exploring new creative tools,
-              contributing to open-source projects, or sharing knowledge through workshops and articles.
-            </p>
-
-            {/* Stats Grid */}
-            <div ref={ref} className="grid grid-cols-2 gap-6">
-              {stats.map((stat, i) => (
+            <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-background to-muted/30 border border-border p-8 min-h-[400px]">
+              {/* Background Color */}
+              <div className={`absolute inset-0 bg-gradient-to-br ${slides[currentSlide].color} -z-10 rounded-2xl`} />
+              
+              {/* Slide Content */}
+              <AnimatePresence mode="wait">
                 <motion.div
-                  key={stat.label}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: i * 0.1 }}
-                  className="text-center p-4 rounded-xl bg-card border shadow-sm"
+                  key={currentSlide}
+                  initial={{ opacity: 0, x: 100 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -100 }}
+                  transition={{ duration: 0.3 }}
+                  className="space-y-4"
                 >
-                  <AnimatedCounter value={stat.value} suffix={stat.suffix} inView={isInView} />
-                  <p className="text-sm text-muted-foreground mt-1">{stat.label}</p>
+                  <h3 className="text-2xl md:text-3xl font-bold text-foreground">
+                    {slides[currentSlide].title}
+                  </h3>
+                  <p className="text-muted-foreground text-base md:text-lg leading-relaxed">
+                    {slides[currentSlide].content}
+                  </p>
                 </motion.div>
-              ))}
+              </AnimatePresence>
+
+              {/* Navigation Buttons */}
+              <div className="absolute bottom-4 right-4 flex gap-2 z-10">
+                <button
+                  onClick={prevSlide}
+                  className="p-2 rounded-full bg-background/80 hover:bg-background border border-border shadow-lg transition-all hover:scale-110 active:scale-95"
+                  aria-label="Previous slide"
+                  type="button"
+                >
+                  <ChevronLeft className="w-5 h-5" />
+                </button>
+                <button
+                  onClick={nextSlide}
+                  className="p-2 rounded-full bg-background/80 hover:bg-background border border-border shadow-lg transition-all hover:scale-110 active:scale-95"
+                  aria-label="Next slide"
+                  type="button"
+                >
+                  <ChevronRight className="w-5 h-5" />
+                </button>
+              </div>
+
+              {/* Slide Indicators */}
+              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+                {slides.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentSlide(index)}
+                    className={`h-2 rounded-full transition-all ${
+                      index === currentSlide
+                        ? "bg-emerald-600 dark:bg-emerald-400 w-8"
+                        : "bg-muted-foreground/30 w-2"
+                    }`}
+                    aria-label={`Go to slide ${index + 1}`}
+                    type="button"
+                  />
+                ))}
+              </div>
+            </div>
+
+            {/* Slide Counter */}
+            <div className="mt-4 text-center text-sm text-muted-foreground">
+              {currentSlide + 1} / {slides.length}
             </div>
           </motion.div>
         </div>
