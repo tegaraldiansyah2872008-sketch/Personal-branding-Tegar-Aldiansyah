@@ -44,7 +44,7 @@ export function Hero() {
             <div className="absolute -inset-2 bg-gradient-to-r from-emerald-400 to-amber-400 rounded-full blur-lg opacity-40" />
             <div className="relative size-32 md:size-40 rounded-full overflow-hidden border-4 border-emerald-500/30 shadow-2xl">
               <Image
-                src="/images/tegar.jpeg"
+                src="/images/tegar 1 mpk.jpeg"
                 alt="Tegar Aldiansyah"
                 fill
                 className="object-cover"

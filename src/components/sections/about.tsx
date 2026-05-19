@@ -91,7 +91,7 @@ export function About() {
             <div className="absolute -inset-4 bg-gradient-to-r from-emerald-200 to-amber-200 dark:from-emerald-900/30 dark:to-amber-900/30 rounded-2xl blur-2xl opacity-30" />
             <div className="relative aspect-[4/5] rounded-2xl overflow-hidden shadow-xl">
               <Image
-                src="/images/tegar.jpeg"
+                src="/images/tegar 1 mpk.jpeg"
                 alt="Tegar Aldiansyah portrait"
                 fill
                 className="object-cover"
