@@ -7,6 +7,7 @@ import { SectionHeading } from "@/components/section-heading"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import Image from "next/image"
+import { useLanguage } from "@/contexts/language-context"
 
 const projects = [
   {
@@ -29,10 +30,12 @@ function ProjectCard({
   project,
   index,
   onView,
+  t,
 }: {
   project: (typeof projects)[0]
   index: number
   onView: (img: string) => void
+  t: any
 }) {
   return (
     <motion.div
@@ -61,7 +64,7 @@ function ProjectCard({
               className="gap-2"
             >
               <ExternalLink className="size-3.5" />
-              Preview
+              {t.portfolio.preview}
             </Button>
             {project.link && (
               <Button
@@ -73,7 +76,7 @@ function ProjectCard({
                 className="bg-emerald-600 hover:bg-emerald-700 text-white gap-2"
               >
                 <ExternalLink className="size-3.5" />
-                Lihat Projek
+                {t.portfolio.visit}
               </Button>
             )}
           </div>
@@ -103,15 +106,16 @@ function ProjectCard({
 
 export function Portfolio() {
   const [selectedImage, setSelectedImage] = useState<string | null>(null)
+  const { t } = useLanguage()
 
   return (
     <>
       <section id="portfolio" className="py-20 md:py-28">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeading
-            label="My Work"
-            title="Proyek Unggulan"
-            description="Setiap Proyek Dikerjakan Dengan Fokus Pada Kualitas dan Fungsional"
+            label={t.portfolio.label}
+            title={t.portfolio.title}
+            description={t.portfolio.description}
           />
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -121,6 +125,7 @@ export function Portfolio() {
                 project={project}
                 index={i}
                 onView={(img) => setSelectedImage(img)}
+                t={t}
               />
             ))}
           </div>

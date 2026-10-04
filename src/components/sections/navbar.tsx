@@ -2,20 +2,12 @@
 
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { Menu, X, Sun, Moon } from "lucide-react"
+import { Menu, X, Sun, Moon, Globe } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useTheme } from "next-themes"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-
-const navLinks = [
-  { href: "/", label: "Beranda" },
-  { href: "/about", label: "About" },
-  { href: "/skills", label: "Skills" },
-  { href: "/portfolio", label: "Portfolio" },
-  { href: "/cv", label: "CV" },
-  { href: "/contact", label: "Contact" },
-]
+import { useLanguage } from "@/contexts/language-context"
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false)
@@ -23,6 +15,16 @@ export function Navbar() {
   const { theme, setTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
   const pathname = usePathname()
+  const { language, setLanguage, t } = useLanguage()
+
+  const navLinks = [
+    { href: "/", label: t.nav.home },
+    { href: "/about", label: t.nav.about },
+    { href: "/skills", label: t.nav.skills },
+    { href: "/portfolio", label: t.nav.portfolio },
+    { href: "/cv", label: t.nav.cv },
+    { href: "/contact", label: t.nav.contact },
+  ]
 
   useEffect(() => {
     setMounted(true)
@@ -74,29 +76,57 @@ export function Navbar() {
             </Link>
           ))}
           {mounted && (
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-              className="ml-2"
-              aria-label="Toggle theme"
-            >
-              {theme === "dark" ? <Sun className="size-4" /> : <Moon className="size-4" />}
-            </Button>
+            <>
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+                className="ml-2"
+                aria-label="Toggle theme"
+              >
+                {theme === "dark" ? <Sun className="size-4" /> : <Moon className="size-4" />}
+              </Button>
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setLanguage(language === "en" ? "id" : "en")}
+                aria-label="Change language"
+                className="relative"
+              >
+                <Globe className="size-4" />
+                <span className="absolute -top-1 -right-1 text-[10px] font-bold">
+                  {language.toUpperCase()}
+                </span>
+              </Button>
+            </>
           )}
         </div>
 
         {/* Mobile Menu Toggle */}
         <div className="flex items-center gap-2 md:hidden">
           {mounted && (
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-              aria-label="Toggle theme"
-            >
-              {theme === "dark" ? <Sun className="size-4" /> : <Moon className="size-4" />}
-            </Button>
+            <>
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+                aria-label="Toggle theme"
+              >
+                {theme === "dark" ? <Sun className="size-4" /> : <Moon className="size-4" />}
+              </Button>
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setLanguage(language === "en" ? "id" : "en")}
+                aria-label="Change language"
+                className="relative"
+              >
+                <Globe className="size-4" />
+                <span className="absolute -top-1 -right-1 text-[10px] font-bold">
+                  {language.toUpperCase()}
+                </span>
+              </Button>
+            </>
           )}
           <Button
             variant="ghost"

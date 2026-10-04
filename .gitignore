@@ -50,5 +50,5 @@ test
 prompt
 
 server.log
-# Skills directory
-/skills/
+# Skills directory - commented out for deployment
+# /skills/

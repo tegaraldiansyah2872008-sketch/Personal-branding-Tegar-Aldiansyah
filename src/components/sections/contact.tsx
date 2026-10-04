@@ -3,22 +3,7 @@
 import { motion } from "framer-motion"
 import { Mail, MapPin, Instagram, MessageCircle } from "lucide-react"
 import { SectionHeading } from "@/components/section-heading"
-
-const contactInfo = [
-  {
-    icon: Mail,
-    label: "Email",
-    value: "tegaraldiansyah280708@gmail.com",
-    href: "mailto:tegaraldiansyah280708@gmail.com",
-  },
-
-  {
-    icon: MapPin,
-    label: "Location",
-    value: "Semarang, Indonesia",
-    href: null,
-  },
-]
+import { useLanguage } from "@/contexts/language-context"
 
 const socialLinks = [
   { icon: Instagram, label: "Instagram", href: "https://www.instagram.com/tegar_a1d?igsh=eHZ5cDRkOGdidGwx" },
@@ -26,13 +11,29 @@ const socialLinks = [
 ]
 
 export function Contact() {
+  const { t } = useLanguage()
+
+  const contactInfo = [
+    {
+      icon: Mail,
+      label: "Email",
+      value: t.contact.email_desc,
+      href: "mailto:tegaraldiansyah280708@gmail.com",
+    },
+    {
+      icon: MapPin,
+      label: t.contact.location,
+      value: t.contact.location_value,
+      href: null,
+    },
+  ]
   return (
     <section id="contact" className="py-20 md:py-28">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
-          label="Get In Touch"
-          title="Just Call Me"
-          description="Setiap pesan adalah kesempatan untuk berkembang dan berkolaborasi"
+          label={t.contact.label}
+          title={t.contact.title}
+          description={t.contact.description}
         />
 
         <div className="grid md:grid-cols-2 gap-12">
@@ -46,11 +47,10 @@ export function Contact() {
           >
             <div>
               <h3 className="text-xl font-semibold text-foreground mb-2">
-                Mari mulai kolaborasi yang bermakna
+                {t.contact.collaborate_title}
               </h3>
               <p className="text-muted-foreground leading-relaxed">
-                Jika Anda memiliki ide, proyek, atau kebutuhan pengembangan website, aplikasi, maupun branding, saya siap membantu mewujudkannya.
-                Silakan hubungi saya, dan kita diskusikan solusi terbaik sesuai kebutuhan Anda.
+                {t.contact.collaborate_desc}
               </p>
             </div>
 
@@ -78,7 +78,7 @@ export function Contact() {
             </div>
 
             <div>
-              <p className="text-sm text-muted-foreground mb-3">Follow me</p>
+              <p className="text-sm text-muted-foreground mb-3">{t.contact.connect}</p>
               <div className="flex gap-3">
                 {socialLinks.map((link) => (
                   <a
@@ -107,10 +107,10 @@ export function Contact() {
             {/* Header */}
             <div className="text-center">
               <h3 className="text-2xl font-bold text-foreground mb-2">
-                Pilih Cara Terbaik untuk Menghubungi Saya
+                {t.contact.cta_title}
               </h3>
               <p className="text-muted-foreground">
-                Klik salah satu tombol di bawah untuk langsung terhubung
+                {t.contact.cta_description}
               </p>
             </div>
 
@@ -128,8 +128,8 @@ export function Contact() {
                   <Mail className="size-7" />
                 </div>
                 <div className="flex-1">
-                  <h4 className="text-lg font-semibold text-foreground mb-1">Email Me</h4>
-                  <p className="text-sm text-muted-foreground">tegaraldiansyah280708@gmail.com</p>
+                  <h4 className="text-lg font-semibold text-foreground mb-1">{t.contact.email_title}</h4>
+                  <p className="text-sm text-muted-foreground">{t.contact.email_desc}</p>
                 </div>
                 <div className="text-blue-600 dark:text-blue-400 opacity-0 group-hover:opacity-100 transition-opacity">
                   📋
@@ -147,8 +147,8 @@ export function Contact() {
                   <MessageCircle className="size-7" />
                 </div>
                 <div className="flex-1">
-                  <h4 className="text-lg font-semibold text-foreground mb-1">WhatsApp</h4>
-                  <p className="text-sm text-muted-foreground">Chat langsung via WhatsApp</p>
+                  <h4 className="text-lg font-semibold text-foreground mb-1">{t.contact.whatsapp_title}</h4>
+                  <p className="text-sm text-muted-foreground">{t.contact.whatsapp_desc}</p>
                 </div>
                 <div className="text-green-600 dark:text-green-400 opacity-0 group-hover:opacity-100 transition-opacity">
                   →
@@ -166,8 +166,8 @@ export function Contact() {
                   <Instagram className="size-7" />
                 </div>
                 <div className="flex-1">
-                  <h4 className="text-lg font-semibold text-foreground mb-1">Instagram DM</h4>
-                  <p className="text-sm text-muted-foreground">@tegar_a1d</p>
+                  <h4 className="text-lg font-semibold text-foreground mb-1">{t.contact.instagram_title}</h4>
+                  <p className="text-sm text-muted-foreground">{t.contact.instagram_desc}</p>
                 </div>
                 <div className="text-pink-600 dark:text-pink-400 opacity-0 group-hover:opacity-100 transition-opacity">
                   →
@@ -178,7 +178,7 @@ export function Contact() {
             {/* Additional Info */}
             <div className="p-5 rounded-xl bg-muted/50 border text-center">
               <p className="text-sm text-muted-foreground">
-                💡 <strong>Tips:</strong> Untuk respons lebih cepat, hubungi via WhatsApp
+                {t.contact.tip}
               </p>
             </div>
           </motion.div>

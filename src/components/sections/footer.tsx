@@ -2,14 +2,7 @@
 
 import { ArrowUp, Instagram, MessageCircle, Heart } from "lucide-react"
 import Link from "next/link"
-
-const footerLinks = [
-  { label: "Beranda", href: "/" },
-  { label: "About", href: "/about" },
-  { label: "Skills", href: "/skills" },
-  { label: "Portfolio", href: "/portfolio" },
-  { label: "Contact", href: "/contact" },
-]
+import { useLanguage } from "@/contexts/language-context"
 
 const socialLinks = [
   { icon: Instagram, label: "Instagram", href: "https://www.instagram.com/tegar_a1d?igsh=eHZ5cDRkOGdidGwx" }, 
@@ -17,6 +10,15 @@ const socialLinks = [
 ]
 
 export function Footer() {
+  const { t } = useLanguage()
+  
+  const footerLinks = [
+    { label: t.nav.home, href: "/" },
+    { label: t.nav.about, href: "/about" },
+    { label: t.nav.skills, href: "/skills" },
+    { label: t.nav.portfolio, href: "/portfolio" },
+    { label: t.nav.contact, href: "/contact" },
+  ]
   return (
     <footer className="mt-auto border-t bg-card">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
@@ -31,7 +33,7 @@ export function Footer() {
               <span className="text-foreground">_Aldi</span>
             </Link>
             <p className="text-sm text-muted-foreground mt-1">
-              Creative Developer & Network
+              {t.footer.tagline}
             </p>
           </div>
 
@@ -68,14 +70,14 @@ export function Footer() {
         <div className="mt-8 pt-6 border-t flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-xs text-muted-foreground flex items-center gap-1">
             &copy; {new Date().getFullYear()} Tegar Aldiansyah.{" "}
-            <Heart className="size-3 text-red-500 fill-red-500" />Semarang,Jawa Tengah
+            <Heart className="size-3 text-red-500 fill-red-500" />{t.footer.copyright}
           </p>
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
             className="flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground transition-colors group"
-            aria-label="Back to top"
+            aria-label={t.footer.back_to_top}
           >
-            Back to top
+            {t.footer.back_to_top}
             <ArrowUp className="size-3 group-hover:-translate-y-0.5 transition-transform" />
           </button>
         </div>

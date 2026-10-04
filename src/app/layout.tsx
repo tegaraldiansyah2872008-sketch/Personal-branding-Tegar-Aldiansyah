@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
 import { ThemeProvider } from "@/components/theme-provider";
+import { LanguageProvider } from "@/contexts/language-context";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -15,19 +16,22 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Tegar Aldiansyah - Creative Developer",
+  title: "Tegar Aldiansyah - Fullstack Developer & Network",
   description:
-    "Personal portfolio of Arga Pradipta — a creative developer and UI/UX designer from Jakarta, Indonesia. Crafting digital experiences that inspire.",
+    "Personal portfolio of Tegar Aldiansyah — a creative fullstack developer and network specialist from Semarang, Indonesia. Student at SMKN 7 Semarang majoring in Network and Application Information Systems.",
   keywords: [
-    "Arga Pradipta",
-    "Creative Developer",
-    "UI/UX Designer",
+    "Tegar Aldiansyah",
+    "Fullstack Developer",
+    "Network Specialist",
     "Portfolio",
-    "Jakarta",
+    "Semarang",
     "Web Developer",
+    "SMKN 7 Semarang",
+    "SIJA",
   ],
-  authors: [{ name: "Arga Pradipta" }],
+  authors: [{ name: "Tegar Aldiansyah" }],
   icons: {
+    icon: "/favicon.ico",
   },
 };
 
@@ -47,8 +51,10 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {children}
-          <Toaster />
+          <LanguageProvider>
+            {children}
+            <Toaster />
+          </LanguageProvider>
         </ThemeProvider>
       </body>
     </html>

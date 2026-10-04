@@ -1,17 +1,11 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { ArrowDown, FileText, Mail } from "lucide-react"
-import { Button } from "@/components/ui/button"
 import Image from "next/image"
+import { useLanguage } from "@/contexts/language-context"
 
 export function Hero() {
-  const handleScroll = (href: string) => {
-    const el = document.querySelector(href)
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth" })
-    }
-  }
+  const { t } = useLanguage()
 
   return (
     <section id="beranda" className="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -74,7 +68,7 @@ export function Hero() {
           transition={{ duration: 0.6, delay: 0.3 }}
           className="mt-4 text-lg md:text-xl text-emerald-600 dark:text-emerald-400 font-medium"
         >
-          SISWA SMKN 7 SEMARANG
+          {t.hero.role}
         </motion.p>
 
         {/* Tagline */}
@@ -84,7 +78,7 @@ export function Hero() {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="mt-3 text-base md:text-lg text-muted-foreground max-w-xl mx-auto"
         >
-          Ngatur Jaringan, Bukan Perasaan | Network
+          {t.hero.description}
         </motion.p>
       </div>
     </section>

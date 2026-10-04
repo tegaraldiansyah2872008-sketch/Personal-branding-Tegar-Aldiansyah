@@ -6,18 +6,20 @@ import { Eye, Download } from "lucide-react"
 import Image from "next/image"
 import { SectionHeading } from "@/components/section-heading"
 import { Button } from "@/components/ui/button"
-
-const cvItems = [
-  {
-    title: "Curriculum Vitae",
-    description: "Dokumen lengkap berisi profil, pendidikan, pengalaman, dan keterampilan saya",
-    image: "/images/CVV Tegar.png",
-    pdfUrl: "/cv/CV Tegar Aldiansyah.pdf",
-  },
-]
+import { useLanguage } from "@/contexts/language-context"
 
 export function Testimonials() {
   const [selectedImage, setSelectedImage] = useState<string | null>(null)
+  const { t } = useLanguage()
+
+  const cvItems = [
+    {
+      title: t.cv.title_item,
+      description: t.cv.description_item,
+      image: "/images/CVV Tegar.png",
+      pdfUrl: "/cv/CV Tegar Aldiansyah.pdf",
+    },
+  ]
 
   const handleDownload = (pdfUrl: string, title: string) => {
     const link = document.createElement('a')
@@ -33,9 +35,9 @@ export function Testimonials() {
       <section id="cv" className="py-20 md:py-28 bg-muted/30">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeading
-            label="Curriculum Vitae"
-            title="Profil & Pengalaman"
-            description="Siap berkontribusi dan memberikan dampak melalui kemampuan yang saya miliki"
+            label={t.cv.label}
+            title={t.cv.title}
+            description={t.cv.description}
           />
 
           <div className="grid grid-cols-1 gap-6 max-w-2xl mx-auto">
@@ -67,7 +69,7 @@ export function Testimonials() {
                         className="gap-2 flex-1"
                       >
                         <Eye className="size-4" />
-                        Preview
+                        {t.cv.preview}
                       </Button>
                       <Button
                         size="sm"
@@ -75,7 +77,7 @@ export function Testimonials() {
                         className="bg-emerald-600 hover:bg-emerald-700 text-white gap-2 flex-1"
                       >
                         <Download className="size-4" />
-                        Download PDF
+                        {t.cv.download}
                       </Button>
                     </div>
                   </div>
@@ -97,7 +99,7 @@ export function Testimonials() {
                       className="gap-2 flex-1"
                     >
                       <Eye className="size-4" />
-                      Preview
+                      {t.cv.preview}
                     </Button>
                     <Button
                       size="sm"
@@ -105,7 +107,7 @@ export function Testimonials() {
                       className="bg-emerald-600 hover:bg-emerald-700 text-white gap-2 flex-1"
                     >
                       <Download className="size-4" />
-                      Download
+                      {t.cv.download}
                     </Button>
                   </div>
                 </div>

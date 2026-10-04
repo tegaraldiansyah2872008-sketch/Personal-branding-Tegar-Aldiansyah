@@ -5,6 +5,7 @@ import { useRef, useEffect, useState } from "react"
 import { SectionHeading } from "@/components/section-heading"
 import Image from "next/image"
 import { ChevronLeft, ChevronRight } from "lucide-react"
+import { useLanguage } from "@/contexts/language-context"
 
 function AnimatedCounter({ value, suffix, inView }: { value: number; suffix: string; inView: boolean }) {
   const [count, setCount] = useState(0)
@@ -34,33 +35,21 @@ function AnimatedCounter({ value, suffix, inView }: { value: number; suffix: str
   )
 }
 
-const slides = [
-  {
-    title: "👋 Perkenalan",
-    content: "Hi! Saya Tegar Aldiansyah, Saya berasal dari keluarga sederhana yang selalu mendukung pendidikan dan perkembangan saya. Orang tua saya mengajarkan pentingnya tanggung jawab, Disiplin Dan kerja keras sejak dini. Saya Merupakan siswa di SMKN 7 SEMARANG, Jurusan Sistem Informasi Jaringan dan Aplikasi (SIJA). Selama bersekolah, Saya aktif dalam kegiatan pembelajaran praktik terutama di bidang jaringan komputer",
-    color: "from-emerald-500/10 to-teal-500/10"
-  },
-  {
-    title: "💡 Hobi & Minat",
-    content: "Saya memiliki Hobi bermain bulu tangkis dan bermain game. Dari hobi tersebut, saya belajar tentang sportifitas, strategi, Serta kerja sama tim. Saya memiliki minat yang besar di bidang programming dan jaringan komputer. Terutama dalam memahami cara kerja sistem, membuat solusi berbasis teknologi serta mengelola jaringan",
-    color: "from-blue-500/10 to-cyan-500/10"
-  },
-  {
-    title: "🎯 Cita-cita",
-    content: "Saya bercita-cita menjadi seorang pengusaha dibidang peternakan modern yang memanfaatkan teknologi untuk meningkatkan efisiensi dan produktifitas. Selain itu, saya juga ingin mengembangkan kemampuan di bidang IT sebagai pendukung dalam menjalankan usaha di masa depan",
-    color: "from-purple-500/10 to-pink-500/10"
-  },
-  {
-    title: "🚀 Skills",
-    content: "Saya memiliki soft skill berupa disiplin, tanggung jawab, mampu bekerja sama dengan tim, serta memiliki kemauan belajar yang tinggi sehingga dapat beradaptasi dengan cepat di lingkungan baru. Selain itu, saya juga memiliki hard skill di bidang dasar pemrograman dan konfigurasi jaringan, termasuk pengalaman dalam melakukan IP routing sederhana serta penggunaan tools jaringan seperti Winbox pada Mikrotik.",
-    color: "from-amber-500/10 to-orange-500/10"
-  }
-]
-
 export function About() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
   const [currentSlide, setCurrentSlide] = useState(0)
+  const { t } = useLanguage()
+  
+  const slides = t.about.slides.map((slide, index) => ({
+    ...slide,
+    color: [
+      "from-emerald-500/10 to-teal-500/10",
+      "from-blue-500/10 to-cyan-500/10",
+      "from-purple-500/10 to-pink-500/10",
+      "from-amber-500/10 to-orange-500/10"
+    ][index]
+  }))
 
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % slides.length)
@@ -74,9 +63,9 @@ export function About() {
     <section id="about" className="py-20 md:py-28">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
-          label="About Me"
-          title="Tentang saya"
-          description="Saya pengembang kreatif dari Semarang yang suka eksplor teknologi"
+          label={t.about.label}
+          title={t.about.title}
+          description={t.about.description}
         />
 
         <div className="grid md:grid-cols-2 gap-12 items-center">

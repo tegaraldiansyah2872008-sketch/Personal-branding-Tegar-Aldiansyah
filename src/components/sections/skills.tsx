@@ -3,6 +3,7 @@
 import { motion, useInView } from "framer-motion"
 import { useRef } from "react"
 import { SectionHeading } from "@/components/section-heading"
+import { useLanguage } from "@/contexts/language-context"
 import {
   Palette,
   Code2,
@@ -64,13 +65,15 @@ function SkillCard({ skill, index }: { skill: (typeof skills)[0]; index: number 
 }
 
 export function Skills() {
+  const { t } = useLanguage()
+
   return (
     <section id="skills" className="py-20 md:py-28 bg-muted/30">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
-          label="My Skills"
-          title="Yang Saya Kuasai"
-          description="Selalu Berkomitmen Untuk Terus Belajar dan Mengambangkan Kemampuan"
+          label={t.skills.label}
+          title={t.skills.title}
+          description={t.skills.description}
         />
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
