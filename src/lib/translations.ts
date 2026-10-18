@@ -122,11 +122,11 @@ export const translations = {
     // Navbar
     nav: {
       home: "Beranda",
-      about: "About",
-      skills: "Skills",
-      portfolio: "Portfolio",
+      about: "Tentang",
+      skills: "Keahlian",
+      portfolio: "Portofolio",
       cv: "CV",
-      contact: "Contact",
+      contact: "Kontak",
     },
     
     // Hero
