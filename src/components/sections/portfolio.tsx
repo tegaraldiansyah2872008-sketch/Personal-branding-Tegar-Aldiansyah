@@ -9,18 +9,13 @@ import { Button } from "@/components/ui/button"
 import Image from "next/image"
 import { useLanguage } from "@/contexts/language-context"
 
-const projects = [
+// Static data (images and links)
+const projectsData = [
   {
-    title: "Web Statis",
-    description:
-      "Website ini dikembangkan untuk menyajikan informasi lengkap dan menarik mengenai kuliner khas Semarang dalam satu platform digital yang sederhana dan mudah diakses. Melalui tampilan yang interaktif, pengguna dapat menjelajahi berbagai jenis makanan tradisional, mengetahui deskripsi, serta mendapatkan referensi kuliner dengan lebih praktis.",
     image: "/images/Inasnung.png",
     link: "https://cemalcemil-six.vercel.app/" 
   },
   {
-    title: "PROJEK IOT",
-    description:
-      "Smart Kost adalah sistem berbasis Internet of Things (IoT) yang dirancang untuk meningkatkan keamanan, kenyamanan, dan efisiensi pengelolaan kos. Sistem ini memungkinkan pemantauan serta pengendalian perangkat seperti lampu.",
     image: "/images/IOT.png",
     link: "https://drive.google.com/file/d/1cw-aZbZ9FjqNLyQeC4XFTe0rXcr8UPp0/view?usp=drivesdk"
   },
@@ -28,11 +23,13 @@ const projects = [
 
 function ProjectCard({
   project,
+  projectData,
   index,
   onView,
   t,
 }: {
-  project: (typeof projects)[0]
+  project: { title: string; description: string }
+  projectData: { image: string; link: string }
   index: number
   onView: (img: string) => void
   t: any
@@ -48,7 +45,7 @@ function ProjectCard({
       {/* Image */}
       <div className="relative aspect-[16/10] overflow-hidden">
         <Image
-          src={project.image}
+          src={projectData.image}
           alt={project.title}
           fill
           className="object-cover transition-transform duration-500 group-hover:scale-105"
@@ -59,19 +56,19 @@ function ProjectCard({
           <div className="p-6 w-full flex gap-2">
             <Button
               size="sm"
-              onClick={() => onView(project.image)}
+              onClick={() => onView(projectData.image)}
               variant="secondary"
               className="gap-2"
             >
               <ExternalLink className="size-3.5" />
               {t.portfolio.preview}
             </Button>
-            {project.link && (
+            {projectData.link && (
               <Button
                 size="sm"
                 onClick={(e) => {
                   e.stopPropagation()
-                  window.open(project.link, '_blank', 'noopener,noreferrer')
+                  window.open(projectData.link, '_blank', 'noopener,noreferrer')
                 }}
                 className="bg-emerald-600 hover:bg-emerald-700 text-white gap-2"
               >
@@ -119,10 +116,11 @@ export function Portfolio() {
           />
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {projects.map((project, i) => (
+            {t.portfolio.projects.map((project, i) => (
               <ProjectCard
                 key={project.title}
                 project={project}
+                projectData={projectsData[i]}
                 index={i}
                 onView={(img) => setSelectedImage(img)}
                 t={t}
@@ -140,6 +138,7 @@ export function Portfolio() {
         >
           <img
             src={selectedImage}
+            alt="Project preview"
             className="max-w-4xl w-full rounded-lg shadow-lg"
           />
         </div>

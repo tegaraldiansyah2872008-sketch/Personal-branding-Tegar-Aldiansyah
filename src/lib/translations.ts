@@ -57,6 +57,16 @@ export const translations = {
       description: "Every project is done with a focus on quality and functionality",
       preview: "Preview",
       visit: "Visit Website",
+      projects: [
+        {
+          title: "Static Website",
+          description: "This website was developed to present complete and interesting information about Semarang's typical culinary in one simple and easy-to-access digital platform. Through an interactive display, users can explore various types of traditional food, learn descriptions, and get culinary references more practically.",
+        },
+        {
+          title: "IOT PROJECT",
+          description: "Smart Kost is an Internet of Things (IoT) based system designed to improve security, comfort and boarding house management efficiency. This system allows monitoring and controlling devices such as lights.",
+        },
+      ],
     },
     
     // CV
@@ -166,6 +176,16 @@ export const translations = {
       description: "Setiap Proyek Dikerjakan Dengan Fokus Pada Kualitas dan Fungsional",
       preview: "Preview",
       visit: "Visit Website",
+      projects: [
+        {
+          title: "Web Statis",
+          description: "Website ini dikembangkan untuk menyajikan informasi lengkap dan menarik mengenai kuliner khas Semarang dalam satu platform digital yang sederhana dan mudah diakses. Melalui tampilan yang interaktif, pengguna dapat menjelajahi berbagai jenis makanan tradisional, mengetahui deskripsi, serta mendapatkan referensi kuliner dengan lebih praktis.",
+        },
+        {
+          title: "PROJEK IOT",
+          description: "Smart Kost adalah sistem berbasis Internet of Things (IoT) yang dirancang untuk meningkatkan keamanan, kenyamanan, dan efisiensi pengelolaan kos. Sistem ini memungkinkan pemantauan serta pengendalian perangkat seperti lampu.",
+        },
+      ],
     },
     
     // CV
